@@ -1,0 +1,7 @@
+center_id,kind,start,end
+POWER,support,2026-10-01,2027-01-01
+LAUNDRY,support,2026-10-01,2027-01-01
+REPAIR,support,2026-10-01,2027-01-01
+WARD1,clinical,2026-10-01,2027-01-01
+WARD2,clinical,2026-10-01,2027-01-01
+IDLE,idle,2026-10-01,2027-01-01

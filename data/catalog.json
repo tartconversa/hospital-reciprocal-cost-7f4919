@@ -1,0 +1,316 @@
+{
+  "title": "医院互供服务的科室成本结转仓",
+  "synthetic": true,
+  "tables": [
+    {
+      "name": "centers",
+      "description": "中心与类型。",
+      "columns": [
+        {
+          "name": "center_id",
+          "type": "string",
+          "description": "中心",
+          "nullable": true
+        },
+        {
+          "name": "kind",
+          "type": "string",
+          "description": "support或clinical或idle",
+          "nullable": true
+        },
+        {
+          "name": "start",
+          "type": "date",
+          "description": "起",
+          "nullable": true
+        },
+        {
+          "name": "end",
+          "type": "date",
+          "description": "止",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "center_id"
+      ],
+      "references": [],
+      "path": "data/centers.csv",
+      "row_count": 6,
+      "sha256": "6104a94540c7a0314fbeb534257d681a80b3f43256acfa2fce97c451864914d5"
+    },
+    {
+      "name": "source_costs",
+      "description": "唯一原生费用及现金，不能合计为双倍支出。",
+      "columns": [
+        {
+          "name": "cost_id",
+          "type": "string",
+          "description": "原始行",
+          "nullable": true
+        },
+        {
+          "name": "center_id",
+          "type": "string",
+          "description": "承担",
+          "nullable": true
+        },
+        {
+          "name": "period",
+          "type": "string",
+          "description": "期间",
+          "nullable": true
+        },
+        {
+          "name": "cost_type",
+          "type": "string",
+          "description": "fixed或variable",
+          "nullable": true
+        },
+        {
+          "name": "kind",
+          "type": "string",
+          "description": "expense或payment或pending",
+          "nullable": true
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "description": "元",
+          "nullable": true
+        },
+        {
+          "name": "underlying_id",
+          "type": "string",
+          "description": "同一义务",
+          "nullable": true
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "description": "日",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "cost_id"
+      ],
+      "references": [
+        {
+          "column": "center_id",
+          "target_table": "centers",
+          "target_column": "center_id"
+        }
+      ],
+      "path": "data/source_costs.csv",
+      "row_count": 7,
+      "sha256": "4e0c0132bb8b98e88a4447ce864683444b13cc944d7e0536a3c04b9539bee41f"
+    },
+    {
+      "name": "service_claims",
+      "description": "双边独立声明。",
+      "columns": [
+        {
+          "name": "claim_id",
+          "type": "string",
+          "description": "回执",
+          "nullable": true
+        },
+        {
+          "name": "transfer_id",
+          "type": "string",
+          "description": "服务",
+          "nullable": true
+        },
+        {
+          "name": "provider",
+          "type": "string",
+          "description": "供方",
+          "nullable": true
+        },
+        {
+          "name": "consumer",
+          "type": "string",
+          "description": "用方",
+          "nullable": true
+        },
+        {
+          "name": "service_type",
+          "type": "string",
+          "description": "计量类",
+          "nullable": true
+        },
+        {
+          "name": "period",
+          "type": "string",
+          "description": "期",
+          "nullable": true
+        },
+        {
+          "name": "side",
+          "type": "string",
+          "description": "provider或consumer",
+          "nullable": true
+        },
+        {
+          "name": "quantity",
+          "type": "number",
+          "description": "量",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "claim_id"
+      ],
+      "references": [
+        {
+          "column": "provider",
+          "target_table": "centers",
+          "target_column": "center_id"
+        },
+        {
+          "column": "consumer",
+          "target_table": "centers",
+          "target_column": "center_id"
+        }
+      ],
+      "path": "data/service_claims.csv",
+      "row_count": 22,
+      "sha256": "aa5756b9161217d5009234087e43a43971e27f7af5e4b947d6bf77c08f3f1447"
+    },
+    {
+      "name": "service_confirmations",
+      "description": "来源既有双方核实，不自动把未达剪小。",
+      "columns": [
+        {
+          "name": "confirmation_id",
+          "type": "string",
+          "description": "行",
+          "nullable": true
+        },
+        {
+          "name": "transfer_id",
+          "type": "string",
+          "description": "服务",
+          "nullable": true
+        },
+        {
+          "name": "matched_quantity",
+          "type": "number",
+          "description": "共同确认量",
+          "nullable": true
+        },
+        {
+          "name": "confirmed_at",
+          "type": "datetime",
+          "description": "确认",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "confirmation_id"
+      ],
+      "references": [],
+      "path": "data/service_confirmations.csv",
+      "row_count": 10,
+      "sha256": "400f545f83d1da914691b4e7a0f9e337c4ec688c2dda5a379348a9cfbef47f7c"
+    },
+    {
+      "name": "capacity",
+      "description": "固定承担容量及可变闲置，IDLE是实际闲置责任不是平衡塞数。",
+      "columns": [
+        {
+          "name": "capacity_id",
+          "type": "string",
+          "description": "行",
+          "nullable": true
+        },
+        {
+          "name": "provider",
+          "type": "string",
+          "description": "供方",
+          "nullable": true
+        },
+        {
+          "name": "consumer",
+          "type": "string",
+          "description": "用方",
+          "nullable": true
+        },
+        {
+          "name": "period",
+          "type": "string",
+          "description": "期",
+          "nullable": true
+        },
+        {
+          "name": "capacity_share",
+          "type": "number",
+          "description": "容量份额",
+          "nullable": true
+        },
+        {
+          "name": "idle_variable_share",
+          "type": "number",
+          "description": "该provider可变闲置比例",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "capacity_id"
+      ],
+      "references": [
+        {
+          "column": "provider",
+          "target_table": "centers",
+          "target_column": "center_id"
+        },
+        {
+          "column": "consumer",
+          "target_table": "centers",
+          "target_column": "center_id"
+        }
+      ],
+      "path": "data/capacity.csv",
+      "row_count": 7,
+      "sha256": "108ce0b9b243f9d2164ea7503d54a5a49d447bf65e4bc0b3eaf8c896ece88ad6"
+    },
+    {
+      "name": "later_confirmations",
+      "description": "后续T8修正共同认可后才影响本期。",
+      "columns": [
+        {
+          "name": "confirmation_id",
+          "type": "string",
+          "description": "行",
+          "nullable": true
+        },
+        {
+          "name": "transfer_id",
+          "type": "string",
+          "description": "服务",
+          "nullable": true
+        },
+        {
+          "name": "matched_quantity",
+          "type": "number",
+          "description": "共同确认",
+          "nullable": true
+        },
+        {
+          "name": "confirmed_at",
+          "type": "datetime",
+          "description": "确认",
+          "nullable": true
+        }
+      ],
+      "key": [
+        "confirmation_id"
+      ],
+      "references": [],
+      "path": "data/later_confirmations.csv",
+      "row_count": 1,
+      "sha256": "9f722afd22e1594c4f6448244de591512cea207629625b09e68d1d16e5c38d9e"
+    }
+  ]
+}

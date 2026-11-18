@@ -1,0 +1,8 @@
+cost_id,center_id,period,cost_type,kind,amount,underlying_id,date
+C1,POWER,2026-10,fixed,expense,1000,OB1,2026-10-10
+C2,POWER,2026-10,variable,expense,2000,OB2,2026-10-12
+C3,LAUNDRY,2026-10,variable,expense,1200,OB3,2026-10-12
+C4,REPAIR,2026-10,variable,expense,800,OB4,2026-10-12
+C5,WARD1,2026-10,variable,expense,500,OB5,2026-10-12
+C6,POWER,2026-10,variable,payment,2000,OB2,2026-10-15
+C7,LAUNDRY,2026-10,variable,pending,100,OB6,2026-10-15
