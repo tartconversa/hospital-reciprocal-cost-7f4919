@@ -37,7 +37,7 @@
       "references": [],
       "path": "data/centers.csv",
       "row_count": 6,
-      "sha256": "6104a94540c7a0314fbeb534257d681a80b3f43256acfa2fce97c451864914d5"
+      "sha256": "5f60543401e72b4d4f4fc4ca1c43cd0d3adc8033ad11405182c4acc0f90bb47a"
     },
     {
       "name": "source_costs",
@@ -104,7 +104,7 @@
       ],
       "path": "data/source_costs.csv",
       "row_count": 7,
-      "sha256": "4e0c0132bb8b98e88a4447ce864683444b13cc944d7e0536a3c04b9539bee41f"
+      "sha256": "9a87368a566dc29047f74a5294e9c2d88bf65b0aba7850c937d52017489c6d73"
     },
     {
       "name": "service_claims",
@@ -176,7 +176,7 @@
       ],
       "path": "data/service_claims.csv",
       "row_count": 22,
-      "sha256": "aa5756b9161217d5009234087e43a43971e27f7af5e4b947d6bf77c08f3f1447"
+      "sha256": "d065b1a585708c505eabead5961c9b88f2ed6292785315e372a9e6b30591c287"
     },
     {
       "name": "service_confirmations",
@@ -213,7 +213,7 @@
       "references": [],
       "path": "data/service_confirmations.csv",
       "row_count": 10,
-      "sha256": "400f545f83d1da914691b4e7a0f9e337c4ec688c2dda5a379348a9cfbef47f7c"
+      "sha256": "3e4f670fcf56339dc05957831146221a562955f03c43999334f03e0b04248b95"
     },
     {
       "name": "capacity",
@@ -273,7 +273,7 @@
       ],
       "path": "data/capacity.csv",
       "row_count": 7,
-      "sha256": "108ce0b9b243f9d2164ea7503d54a5a49d447bf65e4bc0b3eaf8c896ece88ad6"
+      "sha256": "29ec1cfee9c766d09a1b8c7c7f14255bc39ef4d6b9a266495af29ccd2f3fdbd4"
     },
     {
       "name": "later_confirmations",
@@ -310,7 +310,7 @@
       "references": [],
       "path": "data/later_confirmations.csv",
       "row_count": 1,
-      "sha256": "9f722afd22e1594c4f6448244de591512cea207629625b09e68d1d16e5c38d9e"
+      "sha256": "ffcea41815e70cb64ccd12c11ba4133f9610dd53112a9eb5e0ba60441878b807"
     }
   ]
 }
